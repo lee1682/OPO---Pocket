@@ -1,0 +1,819 @@
+//colors
+
+$logo_yellow: #f8bd56;
+$case: #000000;
+$green: orange;
+$dark_green: orange;
+$tact_grey: #cccccc;
+$mic_grey: #3b3e3d;
+
+$screen_border: #131517;
+$screen_eadge: #2b2b2b;
+$screen: #bec5c8;
+
+$spring_white: #f4f4f4;
+$spring_grey_one: #879394;
+$srping_grey_two: #2a2a2a;
+
+$button_top: #383838;
+$button_side: #252525;
+$button_white: white;
+
+$clip: #eaca75;
+
+$text: "Noto Sans KR", sans-serif;
+$text_color: #dfa769;
+
+$button_font: "Noto Sans HK", sans-serif;
+$single_letter: "Source Sans Pro", sans-serif;
+
+@mixin size($height, $widtht, $color) {
+  height: $height;
+  width: $widtht;
+  background: $color;
+}
+
+@mixin dis($dis, $jus, $ali, $dir) {
+  display: $dis;
+  justify-content: $jus;
+  align-items: $ali;
+  flex-direction: $dir;
+}
+
+%center_content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%add {
+  content: " ";
+  display: block;
+}
+
+//code
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: grey;
+}
+//Top Hook
+.hook_contain {
+  @include size(auto, 231px, inherit);
+
+  .hook {
+    @include size(65px, 165px, $case);
+    @include dis(flex, center, center, center);
+    border-radius: 40px;
+    margin: 0 auto;
+
+    .hook_hole {
+      @include size(25px, 125px, grey);
+      margin: 0 auto;
+      border-radius: 40px;
+    }
+
+    .hook_hole::before {
+      @extend %add;
+      @include size(20px, 30px, grey);
+      position: relative;
+      top: -10;
+      left: 50px;
+      border-radius: 50%;
+    }
+  }
+
+  .pocket_text {
+    color: $text_color;
+    position: absolute;
+    font-size: 0.7em;
+    top: 47px;
+  }
+
+  .clip {
+    @include size(10, 90, $case);
+    @include dis(flex, space-between, center, row);
+    margin: 0 auto;
+
+    .curve_side {
+      @include size(10, 10, grey);
+      border-top-left-radius: 25px;
+      border-bottom-left-radius: 25px;
+    }
+
+    .left {
+      transform: rotate(180deg);
+    }
+
+    .curve {
+      @include size(10, 50, grey);
+      border-radius: 50px;
+    }
+  }
+}
+.case {
+  @include size(404px, 231px, $case);
+  @include dis(flex, space-around, center, column);
+  border-radius: 7.5px;
+  position: relative;
+
+  //case text - voice, effect, mode
+  .text_bracket_contain {
+    @include size(50px, 10px, $case);
+    @include dis(flex, space-between, center, column);
+    position: absolute;
+
+    .bracket {
+      @include size(10px, 7.5px, inherit);
+      border-top: 1.2px solid $text_color;
+      border-left: 1.2px solid $text_color;
+    }
+    .bottom {
+      transform: rotatex(180deg);
+    }
+
+    .bracket_text {
+      color: $text_color;
+      font-size: 0.45em;
+      transform: rotate(-90deg);
+      position: relative;
+      left: -2px;
+      font-weight: bold;
+      font-family: $button_font;
+      letter-spacing: 1.2px;
+    }
+
+    .smaller {
+      height: 4px;
+    }
+  }
+  .voice {
+    left: 4;
+    top: 225.5;
+  }
+  .effect {
+    left: 4;
+    top: 312.5;
+  }
+
+  .mode_contain {
+    @include size(90, 8, inherit);
+    @include dis(flex, space-around, center, column);
+    position: absolute;
+    top: 175;
+    right: 4;
+
+    .mode_line {
+      @include size(25, 2, white);
+
+      .mode_line_dot {
+        @extend %add;
+        @include size(5, 5, white);
+        border-radius: 100%;
+        position: relative;
+        left: -1;
+      }
+    }
+    .bottom {
+      transform: rotate(180deg);
+    }
+
+    .mode_text {
+      color: white;
+      transform: rotate(-90deg);
+      font-size: 0.5em;
+      font-family: $button_font;
+      letter-spacing: 1.2px;
+    }
+  }
+
+  //small clock
+
+  .clock_contain {
+    @include size(12, 12, inerit);
+    @include dis(flex, center, center, column);
+    position: absolute;
+    top: 155;
+    left: 48.5;
+    border: 1px solid $text_color;
+    border-radius: 50%;
+    transform: scale(0.8);
+
+    .hands {
+      @include size(4.5, 1, $text_color);
+      transform: translatey(-2px);
+    }
+    .hands::before {
+      @extend %add;
+      @include size(4.5, 1, $text_color);
+      transform: rotate(90deg) translateY(-2px) translateX(2px);
+    }
+
+    .bells {
+      @include size(2.5, 5, $text_color);
+      position: absolute;
+      border-top-left-radius: 50%;
+      border-top-right-radius: 50%;
+      top: -4;
+    }
+
+    .left {
+      transform: rotate(-45deg);
+      left: -2;
+    }
+
+    .right {
+      transform: rotate(45deg);
+      right: -2;
+    }
+  }
+
+  //lock tab
+
+  .lock_contain {
+    @include size(30, 14, grey);
+    @include dis(flex, center, center, row);
+    position: absolute;
+    left: 0;
+    top: 55;
+
+    .lock {
+      @include size(22.5, 13.5, $case);
+      @include dis(flex, center, center, row);
+
+      .lock_text {
+        color: white;
+        font-size: 0.4em;
+        transform: rotate(-90deg);
+        position: relative;
+        //                top:7.5;
+        font-family: $button_font;
+        letter-spacing: 0.5px;
+      }
+
+      .lock_clips {
+        @include size(22.5, 2.5, $case);
+        position: absolute;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+
+        .clip {
+          @include size(4, 4, grey);
+          border-radius: 50px;
+          z-index: -30;
+          list-style: none;
+          margin-bottom: 1;
+        }
+      }
+    }
+  }
+}
+//Spring
+.spring_contain {
+  @include size(30, 10, grey);
+  position: absolute;
+  left: 0;
+  top: 100;
+  border-top-right-radius: 20px;
+  z-index: 0;
+
+  .spring_down {
+    @include size(
+      40,
+      5,
+      linear-gradient(90deg, $spring_white, $spring_grey_one, $srping_grey_two)
+    );
+    position: relative;
+    left: 7.5;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 5px;
+  }
+
+  .spring_up {
+    @include size(
+      18,
+      5,
+      linear-gradient(90deg, $spring_white, $spring_grey_one, $srping_grey_two)
+    );
+    position: relative;
+    left: 1;
+    top: -46;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 5px;
+  }
+
+  .spring_up::before {
+    @include size(
+      10,
+      5,
+      linear-gradient(90deg, $spring_white, $spring_grey_one, $srping_grey_two)
+    );
+    @extend %add;
+    position: relative;
+    z-index: -10;
+    left: 2;
+    top: 6;
+    transform: rotate(180deg);
+  }
+
+  //orange dot under spring
+
+  .spring_up::after {
+    @include size(15, 7.5, $text_color);
+    @extend %add;
+    border-radius: 20%;
+    position: relative;
+    top: 23;
+    z-index: -10;
+    left: 4;
+  }
+
+  //right spring
+}
+.right_spring {
+  left: 220;
+  transform: rotatey(180deg);
+}
+.spring_contain::before {
+  @extend %add;
+  @include size(7.5, 10, $case);
+  position: relative;
+  top: 12;
+  z-index: -1;
+}
+//Odd Letters
+.U,
+.M {
+  position: absolute;
+  font-family: $single_letter;
+  color: white;
+  font-size: 0.6em;
+  font-weight: bold;
+}
+.U {
+  bottom: 7;
+  left: 167.5;
+  color: $green;
+}
+.M {
+  top: 196.5;
+  left: 130;
+  color: $clip;
+}
+.top_section {
+  @include size(40px, 200px, inherist);
+  @include dis(flex, space-between, center, row);
+
+  .speak {
+    color: $green;
+    text-align: center;
+    font-family: $text;
+    width: 50px;
+  }
+
+  .logo {
+    @include size(30px, 50px, inherit);
+    @include dis(flex, center, center, row);
+    position: relative;
+    transform: translateX(-10px);
+
+    .screw {
+      @include size(20px, 7.5px, $logo_yellow);
+      position: absolute;
+      left: 7.5px;
+      transform: rotate(30deg);
+    }
+
+    .screw::before {
+      @include size(5px, 17px, $logo_yellow);
+      @extend %add;
+      margin-top: 7px;
+      border-bottom-right-radius: 50px;
+      border-top-right-radius: 50px;
+    }
+
+    .screw::after {
+      @include size(2.5px, 2.5px, black);
+      @extend %add;
+      position: absolute;
+      top: 8.75px;
+    }
+
+    .nut_contain {
+      position: relative;
+      left: 10px;
+
+      .nut {
+        @include size(12px, 20px, $logo_yellow);
+        transform: rotate(90deg);
+        position: relative;
+
+        .hole {
+          @include size(10px, 10px, black);
+          position: absolute;
+          z-index: 999;
+          border-radius: 50%;
+          top: 1px;
+          left: 5px;
+        }
+      }
+    }
+
+    .nut::before {
+      @extend %add;
+      @include size(12px, 20px, $logo_yellow);
+      transform: rotate(60deg);
+      position: absolute;
+    }
+
+    .nut::after {
+      @extend %add;
+      @include size(12px, 20px, $logo_yellow);
+      transform: rotate(-60deg);
+      position: absolute;
+    }
+  }
+
+  .mic_contain {
+    @include size(30px, 20px, inherit);
+    @include dis(flex, center, center, column);
+    position: relative;
+
+    .mic_top {
+      @include size(8px, 12px, $green);
+      @include dis(flex, center, center, row);
+      flex-wrap: wrap;
+      border-top-left-radius: 40px;
+      border-top-right-radius: 40px;
+      margin-bottom: 1.5px;
+      position: absolute;
+      top: 1;
+
+      .hole_top {
+        @include size(33%, 33%, inherit);
+        position: relative;
+        bottom: 0px;
+      }
+
+      .hole_bottom {
+        @include size(auto, auto, blue);
+      }
+
+      //            .mic_hole{
+      //                @include size(1.5px,1.5px,pink);
+      //                border-radius: 50px;
+      //            }
+    }
+
+    .mic_body {
+      @include size(12px, 9px, $mic_grey);
+      position: absolute;
+      padding-top: 3px;
+      bottom: 8px;
+      z-index: 9;
+    }
+
+    .mic_body::before {
+      @extend %add;
+      @include size(0.7px, 0.7px, black);
+      border-radius: 50px;
+      margin: 0 auto;
+      border: 0.8px solid $clip;
+    }
+
+    .mic_stand {
+      @include size(10px, 15px, $case);
+      position: absolute;
+      bottom: 2;
+      border-bottom: solid 2px $green;
+      border-left: solid 2px $green;
+      border-right: solid 2px $green;
+      border-bottom-left-radius: 50px;
+      border-bottom-right-radius: 50px;
+    }
+
+    .mic_stand::before {
+      @extend %add;
+      @include size(3px, 2px, $green);
+      position: absolute;
+      margin: 0 auto;
+      bottom: -4.8;
+
+      left: 4.5px;
+    }
+  }
+}
+//Screen
+.screen_section {
+  @include size(103px, 202px, white);
+  @include dis(flex, center, center, column);
+  margin-bottom: 10px;
+  z-index: 10;
+
+  .screen_border_top {
+    @include size(10px, 202px, $screen_border);
+  }
+
+  .screen_eadge {
+    @include size(85px, 202px, $screen_eadge);
+    @include dis(flex, center, center, row);
+
+    .screen {
+      @include size(70px, 190px, $screen);
+    }
+  }
+
+  .screen_border_bottom {
+    @include size(10px, 202px, $screen_border);
+  }
+
+  .screen_clips {
+    @include size(7.5px, 170px, inherit);
+    @include dis(flex, space-around, center, row);
+    margin: 0 auto;
+    list-style: none;
+
+    li {
+      @include size(7px, 4px, linear-gradient(white, #232426));
+      border-bottom: 0.5px solid white;
+    }
+  }
+
+  .bottom {
+    transform: rotate(180deg);
+  }
+}
+//Buttons
+.buttons_section {
+  @include size(240px, 205px, inherit);
+  @include dis(flex, space-between, space-between, colum);
+  position: relative;
+
+  .buttons {
+    @include size(98%, 100%, inherit);
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+      @include size(20%, 20%, inherit);
+
+      .tact_base {
+        display: flex;
+        justify-content: center;
+
+        .circle_base {
+          @include size(35px, 35px, $button_white);
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: relative;
+
+          //Yellow Clips
+
+          .clip {
+            @include size(4.5px, 4.5px, $clip);
+            @include dis(flex, center, center, colum);
+            border-radius: 1px;
+            position: absolute;
+          }
+
+          .tl {
+            top: 0.5px;
+            right: 7.5px;
+          }
+
+          .tr {
+            top: 0.5px;
+            left: 7.5px;
+          }
+
+          .br {
+            bottom: 0.5px;
+            left: 7.5px;
+          }
+
+          .bl {
+            bottom: 0.5px;
+            right: 7.5px;
+          }
+
+          //Metal Clip
+
+          .tl::before,
+          .tr::before,
+          .bl::before,
+          .br::before {
+            @extend %add;
+            @include size(90%, 2px, linear-gradient(#b2b3b6, #757c77, #b2b3b6));
+            position: relative;
+          }
+
+          .tl::before,
+          .tr::before {
+            top: 1px;
+          }
+
+          .bl::before,
+          .br::before {
+            bottom: 1px;
+          }
+
+          //Tact Switch & Button
+
+          .tact_switch {
+            @include size(70%, 70%, $tact_grey);
+            @extend %center_content;
+            border-top: 0.5px solid grey;
+
+            //black tact button
+
+            .tact_button {
+              @include size(20px, 20px, $button_side);
+              @include dis(flex, space-around, center, column);
+              border-radius: 50%;
+            }
+
+            .button_press {
+              @extend %add;
+              @include size(14px, 14px, $button_top);
+              border-radius: 50%;
+              border-top: 0.25px solid white;
+            }
+
+            .makeYellow {
+              background: yellow;
+            }
+          }
+        }
+
+        //alternitive backgrounds
+        .green {
+          background: $dark_green;
+        }
+
+        .stripe_white {
+          background-image: repeating-linear-gradient(
+            -45deg,
+            transparent 0 2px,
+            black 2px 4px
+          );
+        }
+
+        .stripe_green {
+          background-image: repeating-linear-gradient(
+            -45deg,
+            transparent,
+            $dark_green 0 2px,
+            black 2px 4px
+          );
+        }
+
+        .tact_switch::before,
+        .tact_switch::after {
+          @extend %add;
+          @include size(12px, 1px, $button_top);
+          position: absolute;
+        }
+
+        .tact_switch::after {
+          left: 4.8px;
+        }
+
+        .tact_switch::before {
+          right: 4.5px;
+        }
+      }
+
+      .button_text {
+        height: 8px;
+
+        p {
+          color: white;
+          font-size: 8px;
+          text-align: center;
+          font-family: $button_font;
+          font-weight: 200;
+        }
+
+        .round {
+          background: $green;
+          height: 8px;
+          color: black;
+          font-weight: bold;
+          border-radius: 20%;
+          p {
+            color: red;
+          }
+        }
+
+        .green_text {
+          color: $green;
+        }
+      }
+    }
+  }
+
+  .big_buttons_contain {
+    @include size(45px, 82px, $case);
+    @include dis(flex, space-around, space-around, row);
+    position: absolute;
+    right: 0;
+    top: -3px;
+
+    .big_button_base {
+      @include size(100%, 40%, $button_side);
+      padding-top: 3.5px;
+      border-radius: 5px;
+
+      .big_button_tact {
+        @include size(85%, 100%, $tact_grey);
+        @include dis(flex, space-around, center, column);
+        position: relative;
+        border-radius: 2.5px;
+
+        .nut {
+          @include size(
+            8px,
+            8px,
+            linear-gradient($tact_grey, $button_side, $button_side)
+          );
+          position: absolute;
+          border-radius: 50px;
+          border: $button_side 0.5px solid;
+        }
+
+        .tl {
+          top: 2px;
+          left: 2px;
+        }
+
+        .tr {
+          top: 2px;
+          right: 2px;
+        }
+
+        .br {
+          bottom: 2px;
+          left: 2px;
+        }
+
+        .bl {
+          bottom: 2px;
+          right: 2px;
+        }
+
+        .button {
+          @include size(20px, 20px, $green);
+          @include dis(flex, center, center, row);
+          border-radius: 50%;
+        }
+
+        .button::before {
+          @extend %add;
+          @include size(15px, 15px, $green);
+          border-bottom: $dark_green 1.5px solid;
+          border-radius: 50%;
+          transform: rotate(45deg);
+        }
+
+        .button::after {
+          @extend %add;
+          @include size(
+            12px,
+            5px,
+            linear-gradient($dark_green, $green, $dark_green)
+          );
+          position: absolute;
+          border: 0.1px solid $dark_green;
+          border-radius: 5px;
+          transform: rotate(45deg);
+        }
+      }
+
+      .big_button_tact::before {
+        @extend %add;
+        @include size(20px, 4px, $tact_grey);
+        border-left: 1px solid $button_top;
+        position: absolute;
+        left: -3px;
+      }
+
+      .big_button_tact::after {
+        @extend %add;
+        @include size(20px, 4px, $tact_grey);
+        border-right: 1px solid $button_top;
+        position: absolute;
+        right: -3px;
+      }
+    }
+  }
+}
